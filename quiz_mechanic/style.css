@@ -187,6 +187,54 @@ body{
     color: #520CF7;
     font-weight: 600;
     margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.answer-buttons {
+    display: flex;
+    flex-direction: column; /* Default layout: Column */
+    gap: 10px; /* Add vertical spacing between buttons */
+    align-items: stretch; /* Buttons take full width */
+}
+
+.answer-buttons.grid-layout {
+    flex-direction: row; /* Switch to grid for two answers */
+    flex-wrap: wrap; /* Allow wrapping for the grid */
+    justify-content: center; /* Center-align for the grid */
+    gap: 10px; /* Add spacing for grid layout */
+}
+
+.answer-buttons .btn {
+    width: 100%; /* Default: Full width for column layout */
+    max-width: 600px; /* Optional: Set a max width for consistency */
+    background: #fff;
+    color: #222;
+    font-weight: 500;
+    border: 1px solid #180446;
+    padding: 10px;
+    margin: 0; /* Remove default margin for uniform alignment */
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: block; /* Ensure buttons are block elements */
+}
+
+.answer-buttons .btn.selected {
+    background: #520CF7; /* Highlight selected buttons */
+    color: #fff; /* Change text color for visibility */
+}
+
+.answer-buttons.grid-layout .btn {
+    flex: 1 1 calc(50% - 10px); /* Each button takes up 50% width minus spacing */
+    max-width: 200px; /* Limit the size in grid mode */
+}
+
+.answer-buttons .btn.disabled {
+    cursor: default; /* Remove pointer cursor */
+    pointer-events: none; /* Disable hover and click interactions */
+    transition: none; /* Disable hover transitions */
+    background: #ddd; /* Optional: Indicate the button is disabled */
 }
 
 /* Normal Button Styling */
@@ -197,7 +245,7 @@ body{
     width: 100%;
     border: 1px solid #180446;
     padding: 10px;
-    margin: 10px 0;
+    margin: 5px 0;
     text-align: left;
     border-radius: 4px;
     cursor: pointer;
