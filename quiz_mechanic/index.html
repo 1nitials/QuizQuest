@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anyquiz</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+    <!-- Start Quiz Button -->
+    <div class="start_btn"><button>Start Quiz</button></div>
+
+    <!-- Info Box -->
+    <div class="info_box">
+      <div class="info_title">
+        <span>Some Rules for this Quiz</span>
+      </div>
+      <div class="info_list">
+        <div class="info">
+          1. Lorem ipsum dolor sit amet consectetur. Quos, ducimus!
+        </div>
+        <div class="info">
+          2. Lorem ipsum dolor sit amet consectetur. Repellendus, provident.
+        </div>
+        <div class="info">
+          3. Lorem ipsum dolor sit amet consectetur. Voluptatum, perferendis.
+        </div>
+        <div class="info">
+          4. Lorem ipsum dolor sit amet consectetur. Sequi, itaque?
+        </div>
+        <div class="info">
+          5. Lorem ipsum dolor sit amet consectetur. Pariatur, repellat.
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="quit">Exit Quiz</button>
+        <button class="restart">Continue</button>
+      </div>
+    </div>
+
+    <!-- Quiz Box -->
+    <div class="quiz_box">
+        <header>
+            <div class="title">Anyquiz</div>
+            <div class="timer">
+                <div class="time_left">Time Left</div>
+                <div class="timer_sec">15</div>
+            </div>
+        </header>
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+        <section>
+            <div class="ques_text">
+                <span>Question goes here</span>
+            </div>
+            <div class="answer-buttons">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+            <div class="next_button">
+                <button class="next">Next</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Result Box -->
+    <div class="result_box">
+      <div class="progress-circle">
+        <div class="circle">
+          <span class="percentage">0%</span>
+        </div>
+      </div>
+      <div class="result_title">
+        <span>Quiz Completed!</span>
+      </div>
+      <div class="result_content">
+        <p>
+          You answered <span class="correct_answers">0</span> out of
+          <span class="total_questions">5</span> questions correctly!
+        </p>
+      </div>
+      <div class="buttons">
+        <button class="restart">Restart Quiz</button>
+        <button class="quit">Exit Quiz</button>
+      </div>
+    </div>
+
+    <!-- Link the external JavaScript file -->
+    <script src="script.js"></script>
+  </body>
+</html>
