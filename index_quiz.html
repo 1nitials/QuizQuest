@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizQuest</title>
+  <link rel="stylesheet" href="style_quiz.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <audio id="correct-sound" src="assets/correct_sound.mp3"></audio>
+  <audio id="wrong-sound" src="assets/wrong_sound.mp3" volume="0.5"></audio>
+  <audio id="transition-sound" src="assets/next_sound.mp3"></audio>
+</head>
+
+<body>
+
+  <div class="sound-toggle">
+    <button id="sound-toggle-btn">🔊</button>
+  </div>
+
+  <!-- Start Quiz Button -->
+  <div id="quizContainer" class="container">
+
+    <img src="assets/logo.png" alt="">
+    <form id="quiz-form">
+      <label for="quizTopic">What is the quiz about?</label>
+      <input type="text" id="quizTopic" placeholder="Enter topic (optional)" required>
+
+      <label for="fileInput">Or upload a text file:</label>
+      <input type="file" id="fileInput" accept=".txt">
+
+      <label for="difficulty">Select Difficulty:</label>
+      <select id="quizDifficulty">
+        <option selected value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <label for="numQuestions">Number of Questions:</label>
+      <input type="number" id="numQuestions" min="1" max="10" value="5" style="margin-bottom: 10px;">
+    </form>
+
+    <div class="start_btn button" id="generateQuizBtn"><button>Start Quiz</button></div>
+  </div>
+
+  <!-- Info Box -->
+  <div class="info_box">
+    <div class="info_title">
+      <span>Some Rules for this Quiz</span>
+    </div>
+    <div class="info_list">
+      <div class="info">
+        1. Lorem ipsum dolor sit amet consectetur. Quos, ducimus!
+      </div>
+      <div class="info">
+        2. Lorem ipsum dolor sit amet consectetur. Repellendus, provident.
+      </div>
+      <div class="info">
+        3. Lorem ipsum dolor sit amet consectetur. Voluptatum, perferendis.
+      </div>
+      <div class="info">
+        4. Lorem ipsum dolor sit amet consectetur. Sequi, itaque?
+      </div>
+      <div class="info">
+        5. Lorem ipsum dolor sit amet consectetur. Pariatur, repellat.
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="quit">Exit Quiz</button>
+      <button class="restart">Continue</button>
+    </div>
+  </div>
+
+  <!-- Quiz Box -->
+  <div class="quiz_box">
+    <header>
+      <div class="title">QuizQuest</div>
+      <div class="timer">
+        <div class="time_left">Time Left</div>
+        <div class="timer_sec">15</div>
+      </div>
+    </header>
+    <div class="progress-bar-container">
+      <div class="progress-bar"></div>
+    </div>
+    <section>
+      <div class="ques_text">
+        <span>Question goes here</span>
+      </div>
+      <div class="answer-buttons">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+      <div class="next_button">
+        <button class="next">Next</button>
+      </div>
+    </section>
+    <div class="explanation-container" style="display: none;">
+      <h3>Explanation</h3>
+      <p id="explanation-text">Explanation will appear here after answering.</p>
+    </div>
+  </div>
+
+  <!-- Result Box -->
+  <div class="result_box">
+    <div class="progress-circle">
+      <div class="circle">
+        <span class="percentage">0%</span>
+      </div>
+    </div>
+    <div class="result_title">
+      <span>Quiz Completed!</span>
+    </div>
+    <div class="result_content">
+      <p>
+        You answered <span class="correct_answers">0</span> out of
+        <span class="total_questions">5</span> questions correctly!
+      </p>
+    </div>
+    <div class="buttons">
+      <button class="restart">Restart Quiz</button>
+      <button class="quit">Exit Quiz</button>
+    </div>
+  </div>
+
+  <!-- Link the external JavaScript file -->
+  <script src="script_quiz.js"></script>
+</body>
+
+</html>
