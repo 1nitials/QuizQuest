@@ -9,8 +9,51 @@
     /* outline: 1px solid red; */
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: #8657F9;
+    background-color: #8657F9; /* Set the base background color */
+    position: relative; /* Required for pseudo-element positioning */
+    overflow: hidden; /* Prevent scrolling issues */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* Extend width to support scrolling */
+    height: 200%; /* Extend height to support scrolling */
+    background-image: url("images/question_mark.svg");
+    background-repeat: repeat;
+    background-size: 100px 100px; /* Adjust as needed for pattern size */
+    opacity: 0.3; /* Set opacity for the background image */
+    z-index: -1; /* Place it behind the content */
+    pointer-events: none; /* Prevent interference with interactions */
+    animation: pan 480s linear infinite; /* Add the scrolling animation */
+}
+
+@keyframes pan {
+    0% {
+        background-position: 0 0; /* Start at the top-left */
+    }
+    100% {
+        background-position: 100% 100%; /* Move to the bottom-right */
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: #520CF7;
+    color: white;
+    padding: 10px 0;
 }
 
 .sound-toggle {
@@ -52,11 +95,25 @@ body {
     background: #fff;
     width: 90%;
     max-width: 600px;
-    margin: 50px auto;
+    margin: 0 auto; /* Center horizontally */
     padding: 20px 30px;
     border-radius: 10px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
+    position: relative;
+    height: 100vh; /* Take up full viewport height */
+    display: flex;
+    flex-direction: column; /* Ensure proper content stacking */
+    justify-content: center; /* Center contents vertically */
+}
+
+.container img {
+    max-width: 100%; /* Scale down the image to fit the container */
+    height: auto; /* Maintain the aspect ratio */
+    margin: 20px auto; /* Center the image and add spacing */
+    display: block; /* Ensure proper alignment */
+    max-height: 300px; /* Optional: Set a maximum height for better control */
+    object-fit: contain; /* Ensure the image scales nicely */
 }
 
 .container h1 {
@@ -144,9 +201,19 @@ form#quiz-form input[type="number"]::-webkit-outer-spin-button {
     color: #520CF7;
 }
 
-.info_box,
-.quiz_box,
+.info_box, 
+.quiz_box, 
 .result_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 540px;
+    max-height: 90%; /* Prevent overflow on smaller screens */
+    overflow-y: auto; /* Add scroll if content exceeds the container */
+    background: #fff;
+    border-radius: 5px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -156,6 +223,12 @@ form#quiz-form input[type="number"]::-webkit-outer-spin-button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.quiz_box,
+.result_box,
+.countdown {
+    z-index: 1000; /* Ensure these elements are below info_box */
 }
 
 .start_btn button {
@@ -187,10 +260,16 @@ form#quiz-form input[type="number"]::-webkit-outer-spin-button {
 
 
 .info_box {
-    display: none;
+    z-index: 1001; /* Higher than other elements */
+    display: none; /* Initially hidden */
     width: 540px;
     background: #fff;
     border-radius: 5px;
+    position: fixed; /* Ensures it floats above other elements */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .info_box .info_title {
@@ -589,4 +668,36 @@ form#quiz-form input[type="number"]::-webkit-outer-spin-button {
     font-size: 16px;
     color: #333;
     line-height: 1.5;
+}
+
+/* Countdown Style */
+
+.countdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+  
+.countdown div {
+    position: absolute; /* Allows all text to stack in the same spot */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+}
+
+.countdown .numbers { 
+    display: none;
+}
+
+.countdown .one,
+.countdown .two {
+    display: none;
 }

@@ -13,6 +13,8 @@ const quitBtn = document.querySelector('.result_box .quit');
 const progressCircle = document.querySelector('.progress-circle .circle');
 const timerSec = document.querySelector('.timer_sec');
 
+const countdownElement = document.querySelector('.countdown .numbers');
+
 const infoBox = document.querySelector('.info_box');
 const info_restartBtn = document.querySelector('.info_box .restart');
 const info_quitBtn = document.querySelector('.info_box .quit');
@@ -67,6 +69,25 @@ function playSound(soundId) {
     }
 }
 
+function startCountdown() {
+    const countdownElement = document.querySelector('.countdown');
+    const numbers = ['3', '2', '1', 'Go!'];
+    let index = 0;
+
+    // Show the countdown container
+    countdownElement.style.display = 'flex';
+
+    const interval = setInterval(() => {
+        if (index < numbers.length) {
+            countdownElement.textContent = numbers[index];
+            index++;
+        } else {
+            clearInterval(interval);
+            countdownElement.style.display = 'none'; // Hide the countdown
+            startQuiz(); // Call your desired function directly
+        }
+    }, 1000); // Update every second
+}
 
 function showLoading() {
     const loadingOverlay = document.createElement('div');
@@ -426,8 +447,8 @@ function showInfoBox() {
 // Function to start the quiz after info box
 function startQuizAfterInfo() {
     infoBox.style.display = 'none'; // Hide the info box
-    quizBox.style.display = 'block'; // Show the quiz box
-    startQuiz(); // Start the quiz logic
+    //quizBox.style.display = 'block'; // Show the quiz box
+    startCountdown();
 }
   
 // Function to quit the quiz
