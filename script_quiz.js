@@ -42,8 +42,19 @@ const explanationContainer = document.querySelector('.explanation-container');
 //     { question: 'What is the square root of 64?', answers: ['6', '8', '10', '12'], correct: [1] }
 // ];
 
+const quizResult = {
+    topic: "Topic Name",
+    score: 80,          // Score percentage
+    totalQuestions: 10,
+    correctAnswers: 8,
+    date: new Date().toLocaleDateString(),
+    timeSpent: "5m"     // Example duration
+  };
+
 let quizData = []; // Global variable to hold quiz questions dynamically
 
+let quizStartTime;
+let currentTopic = "No Topic";
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -67,6 +78,20 @@ function playSound(soundId) {
             sound.play();
         }
     }
+}
+
+function saveQuizResult(score, totalQuestions, topic, timeSpentSeconds) {
+    const results = JSON.parse(localStorage.getItem('quizResults')) || [];
+    results.push({
+        topic: topic || "No Topic", // Default if topic is not provided
+        score: Math.round((score / totalQuestions) * 100),
+        totalQuestions: totalQuestions,
+        correctAnswers: score,
+        timeSpent: timeSpentSeconds, // Keep time as raw seconds
+        date: new Date().toLocaleDateString()
+    });
+    localStorage.setItem('quizResults', JSON.stringify(results));
+    console.log("Saved Results:", results); // Debugging log
 }
 
 function startCountdown() {
@@ -176,7 +201,11 @@ function readFileContent(file) {
 }
 
 async function startQuiz() {
-    const topic = quizTopicInput.value.trim();
+    quizStartTime = new Date();
+
+    const topic = quizTopicInput.value.trim(); // Retrieve topic from input
+    currentTopic = topic || "No Topic"; // Save to global variable with a fallback
+
     const file = fileInput.files[0];
     const diff = quizDifficulty.value; // Get the selected difficulty
     const numq = numQuestions.value; // Get the number of questions
@@ -414,6 +443,9 @@ function showResult() {
     explanationContainer.style.display = 'none';
     resultBox.style.display = 'block';
 
+    const quizEndTime = new Date();
+    const timeSpentSeconds = Math.round((quizEndTime - quizStartTime) / 1000);
+
     const percentage = Math.round((score / quizData.length) * 100);
 
     percentageElement.textContent = `${percentage}%`;
@@ -424,6 +456,8 @@ function showResult() {
         #520CF7 ${percentage}%,
         #e0e0e0 ${percentage}%
     )`;
+
+    saveQuizResult(score, quizData.length, currentTopic, timeSpentSeconds);
 }
 
 function restartQuiz() {
@@ -456,7 +490,7 @@ function quitQuiz() {
     infoBox.style.display = 'none'; // Hide the info box
     quizContainer.style.display = 'block'; // Return to the main menu
 }
-  
+
 // Event Listeners
 startBtn.addEventListener('click', showInfoBox); // Show the info box on start
 info_restartBtn.addEventListener('click', startQuizAfterInfo); // Start the quiz from the info box
@@ -464,4 +498,6 @@ info_quitBtn.addEventListener('click', quitQuiz); // Return to the main menu
 //startBtn.addEventListener('click', startQuiz);
 nextButton.addEventListener('click', showNextQuestion);
 restartBtn.addEventListener('click', restartQuiz);
-quitBtn.addEventListener('click', () => location.reload());
+quitBtn.addEventListener('click', () => {
+    window.location.href = 'dashboard.html';
+});

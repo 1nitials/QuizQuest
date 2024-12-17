@@ -388,6 +388,10 @@ i {
     font-weight: 500;
 }
 
+.activity-info .quiz-name {
+    color: white;
+}
+
 .activity-item .date {
     font-size: 12px;
     color: #d1c4ff;
