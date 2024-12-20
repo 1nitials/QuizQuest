@@ -16,9 +16,14 @@ html, body {
 }
 
 body {
+    cursor: url('../images/circle-outline.png'), auto;
     background-color: #8657F9; /* Set the base background color */
     position: relative; /* Required for pseudo-element positioning */
     overflow: hidden; /* Prevent scrolling issues */
+}
+
+label {
+    cursor: url('../images/circle-outline.png'), auto;
 }
 
 body::before {
@@ -252,7 +257,6 @@ form#quiz-form input[type="number"]::-webkit-outer-spin-button {
 }
 
 .start_btn button:hover {
-
     border: 3px solid #8657F9;
     background: white;
     color: #8657F9;

@@ -9,8 +9,14 @@
 }
 
 body {
+    cursor: url('../images/circle-outline.png'), auto;
     background: #8657F9;
     min-height: 100vh;
+}
+
+button,
+a {
+    cursor: url('../images/circle-outline-hover.png'), pointer;
 }
 
 /* Navigation Bar */
@@ -277,6 +283,7 @@ i {
 .sidebar-toggle:hover,
 .search-icon:hover {
     color: #7a56e0; /* Slightly lighter color on hover */
+    cursor: url('../images/circle-outline-hover.png'), pointer;
 }
 
 /* General sidebar styles */

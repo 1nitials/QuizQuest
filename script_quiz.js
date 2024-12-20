@@ -501,3 +501,4 @@ restartBtn.addEventListener('click', restartQuiz);
 quitBtn.addEventListener('click', () => {
     window.location.href = 'dashboard.html';
 });
+
